@@ -30,7 +30,6 @@ class PostApi {
           updated_at: item["updated_at"],
 
         );
-        print(temp.title);
         Posts.add(temp);
       }
     }

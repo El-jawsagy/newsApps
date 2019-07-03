@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/shared_ui/drawerNavigation.dart';
-import 'home_screens/AddService.dart';
-import 'home_screens/service_in_order.dart';
-import 'home_screens/whats_new.dart';
+import 'home_screens/favoritTab.dart';
+import 'home_screens/popularTab.dart';
+import 'home_screens/whatsNewTab.dart';
 class homeScreen extends StatefulWidget {
   @override
   _homeScreenState createState() => _homeScreenState();
@@ -76,8 +76,8 @@ class _homeScreenState extends State<homeScreen>
         body: TabBarView(
           children: [
             WhatNew(),
-            InOrder(),
-            AddService(),
+            FavoriteTab(),
+            PopularTab(),
           ],
           controller: _tabController,
         ));
