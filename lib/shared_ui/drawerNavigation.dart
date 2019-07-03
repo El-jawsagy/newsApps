@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/nav_model.dart';
 import 'package:flutter_app/screens/homeScreen.dart';
 import 'package:flutter_app/screens/instgramFeedsScreen.dart';
-import 'package:flutter_app/screens/profileScreen.dart';
-import 'package:flutter_app/screens/settingScreen.dart';
+import 'package:flutter_app/screens/popMenuScreens/settingScreen.dart';
 import 'package:flutter_app/screens/twitterFeedsScreen.dart';
 
 class DrawerNavigation extends StatefulWidget {
@@ -12,15 +11,19 @@ class DrawerNavigation extends StatefulWidget {
 }
 
 List<nav_Model> _listDrawerNav = [
-  nav_Model("Explore", () => homeScreen(), Icons.home),
   nav_Model(
-    "Profile",
-    () => profileScreen(),
-    Icons.person,
+    "Explore",
+    () => homeScreen(),
+    Icons.home,
+  ),
+  nav_Model(
+    "Instagram Feeds",
+    () => InstagramFeeds(),
+    Icons.image,
   ),
   nav_Model(
     "Setting",
-    () => settingScreen(),
+    () => SettingScreen(),
     Icons.settings,
   ),
   nav_Model(
@@ -32,11 +35,6 @@ List<nav_Model> _listDrawerNav = [
     "Logout",
     () => homeScreen(),
     Icons.exit_to_app,
-  ),
-  nav_Model(
-    "Instagram Feeds",
-    () => InstagramFeeds(),
-    Icons.image,
   ),
 ];
 
@@ -86,6 +84,4 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
       ),
     );
   }
-
-
 }

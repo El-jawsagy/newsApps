@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/screens/popMenuScreens/aboutScreen.dart';
+import 'package:flutter_app/screens/popMenuScreens/contactScreen.dart';
+import 'package:flutter_app/screens/popMenuScreens/helpScreen.dart';
+import 'package:flutter_app/screens/popMenuScreens/settingScreen.dart';
 import 'package:flutter_app/shared_ui/drawerNavigation.dart';
 import 'home_screens/favoritTab.dart';
 import 'home_screens/popularTab.dart';
@@ -104,6 +108,32 @@ class _homeScreenState extends State<homeScreen>
             ),
           ],
       icon: Icon(Icons.more_vert),
+      onSelected:(PopNavMenu menu) {
+        switch(menu){
+          case PopNavMenu.ABOUT:
+            return Navigator.push(context, MaterialPageRoute(builder: (context){
+              return AboutScreen();
+            }));
+            break;
+          case PopNavMenu.HELP:
+            return Navigator.push(context, MaterialPageRoute(builder: (context){
+              return HelpScreen();
+            }));
+            break;
+          case PopNavMenu.CONTACT:
+            return Navigator.push(context, MaterialPageRoute(builder: (context){
+              return ContactScreen();
+            }));
+            break;
+          case PopNavMenu.SETTING:
+            return Navigator.push(context, MaterialPageRoute(builder: (context){
+              return SettingScreen();
+            }));
+            break;
+
+        }
+      },
+
     );
   }
 }
