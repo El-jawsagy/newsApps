@@ -5,8 +5,13 @@ class twitterFeeds extends StatefulWidget {
   @override
   _twitterFeedsState createState() => _twitterFeedsState();
 }
-
+List<int> ids =[];
 class _twitterFeedsState extends State<twitterFeeds> {
+  @override
+  void initState() {
+    super.initState();
+    ids=[2,5,3];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +40,7 @@ class _twitterFeedsState extends State<twitterFeeds> {
                     _rowTitle(),
                     _rowCenter(),
                     _drawLine(),
-                    _rowBottom(),
+                    _rowBottom(position,ids),
                   ],
                 ),
               ),
@@ -94,7 +99,7 @@ class _twitterFeedsState extends State<twitterFeeds> {
     );
   }
 
-  Widget _rowBottom() {
+  Widget _rowBottom(int posi,List<int> ids) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
@@ -103,9 +108,17 @@ class _twitterFeedsState extends State<twitterFeeds> {
             IconButton(
                 icon: Icon(
                   Icons.repeat,
-                  color: Colors.amber.shade700,
+                  color: (ids.contains(posi))?Colors.orange : Colors.grey.shade500,
                 ),
-                onPressed: () {}),
+                onPressed: () {
+                  if(ids.contains(posi)){
+                    ids.remove(posi);
+                  }else{
+                    ids.add(posi);
+                  }
+                  setState(() {
+                  });
+                }),
             Text(
               "25",
               style: TextStyle(color: Colors.grey.shade700),

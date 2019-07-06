@@ -18,16 +18,20 @@ class _homeScreenState extends State<homeScreen>
     with SingleTickerProviderStateMixin {
 
 
+
+
   TabController _tabController;
   @override
   // ignore: must_call_super
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+
   }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: Text("EXPLORE"),
@@ -136,4 +140,6 @@ class _homeScreenState extends State<homeScreen>
 
     );
   }
+
+
 }

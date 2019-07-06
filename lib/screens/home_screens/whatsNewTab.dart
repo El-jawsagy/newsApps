@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/apis/post_Api.dart';
 import 'package:flutter_app/models/post.dart';
 import 'package:flutter_app/utilities/shared_Method.dart';
-
 import '../singlePostScreen.dart';
 
 class WhatNew extends StatefulWidget {
@@ -281,69 +280,69 @@ class _WhatNewState extends State<WhatNew> {
       ),
     );
   }
-}
 
 Widget _drawContainer(
     BuildContext context, TextStyle _titleStyle, TextStyle _descriptionStyle) {
-  return FutureBuilder(
-      future: postApi.fetchPost("1"),
-      builder: (context, AsyncSnapshot snapshot) {
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-            return connectionError();
-            break;
-          case ConnectionState.waiting:
-            return loading();
-            break;
-          case ConnectionState.active:
-            return loading();
-            break;
-          case ConnectionState.done:
-            if (snapshot.hasError) {
-              return error(snapshot.error);
-            } else {
-              if (snapshot.hasData) {
-                List<post> posts = snapshot.data;
-                Random random = Random();
-                int indexRan = random.nextInt(posts.length);
-                post postRand = posts[indexRan];
-                return InkWell(onTap: (){
-                  return Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return SinglePost(postRand);
-                  }));
-                },
-                  child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * .25,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(postRand.featured_image),
-                            fit: BoxFit.cover)),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 48, right: 48),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            postRand.title,
-                            style: _titleStyle,
-                            textAlign: TextAlign.center,
+  return  FutureBuilder(
+          future: postApi.fetchPost("1"),
+          builder: (context, AsyncSnapshot snapshot) {
+            switch (snapshot.connectionState) {
+              case ConnectionState.none:
+                return connectionError();
+                break;
+              case ConnectionState.waiting:
+                return loading();
+                break;
+              case ConnectionState.active:
+                return loading();
+                break;
+              case ConnectionState.done:
+                if (snapshot.hasError) {
+                  return error(snapshot.error);
+                } else {
+                  if (snapshot.hasData) {
+                    List<post> posts = snapshot.data;
+                    Random random = Random();
+                    int indexRan = random.nextInt(posts.length);
+                    post postRand = posts[indexRan];
+                    return InkWell(onTap: (){
+                      return Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return SinglePost(postRand);
+                      }));
+                    },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height * .25,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: NetworkImage(postRand.featured_image),
+                                fit: BoxFit.cover)),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 48, right: 48),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                postRand.title,
+                                style: _titleStyle,
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                postRand.content.substring(0, 100),
+                                style: _descriptionStyle,
+                                textAlign: TextAlign.center,
+                              )
+                            ],
                           ),
-                          Text(
-                            postRand.content.substring(0, 100),
-                            style: _descriptionStyle,
-                            textAlign: TextAlign.center,
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              } else {
-                return noData();
-              }
+                    );
+                  } else {
+                    return noData();
+                  }
+                }
+                break;
             }
-            break;
-        }
-      });
-}
+          });
+
+}}

@@ -5,13 +5,17 @@ class InstagramFeeds extends StatefulWidget {
   @override
   _InstagramFeedsState createState() => _InstagramFeedsState();
 }
-
+List<int> ids =[];
 class _InstagramFeedsState extends State<InstagramFeeds> {
   TextStyle _HasAndbuttomStyle = TextStyle(
     color: Colors.orange,
     fontSize: 10,
   );
-
+  @override
+  void initState() {
+    super.initState();
+    ids =[2,7,10];
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,14 +31,15 @@ class _InstagramFeedsState extends State<InstagramFeeds> {
       body: ListView.builder(
         padding: EdgeInsets.all(4),
         itemBuilder: (context, position) {
-          return Card(
-            child: Column(
-              children: <Widget>[
-                _rowTitle(),
-                _rowCenter(),
-                _rowButtom(),
-              ],
-            ),
+          return
+            Card(
+              child: Column(
+                children: <Widget>[
+                  _rowTitle(position,ids),
+                  _rowCenter(),
+                  _rowButtom(),
+                ],
+              ),
           );
         },
         itemCount: 20,
@@ -42,7 +47,7 @@ class _InstagramFeedsState extends State<InstagramFeeds> {
     );
   }
 
-  Widget _rowTitle() {
+  Widget _rowTitle(int position,List<int> ids) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -92,9 +97,20 @@ class _InstagramFeedsState extends State<InstagramFeeds> {
               IconButton(
                   icon: Icon(
                     Icons.favorite,
-                    color: Colors.grey.shade500,
+                    color: (ids.contains(position))?Colors.red : Colors.grey.shade500,
                   ),
-                  onPressed: () {}),
+                  onPressed: () {
+                    if(ids.contains(position)){
+                      print(ids);
+                       ids.remove(position);
+
+                    }else{ print(ids);
+                       ids.add(position);
+                    }
+                    setState(() {
+
+                    });
+                   },iconSize: 25,),
               Transform.translate(
                 child: Text(
                   "25",
